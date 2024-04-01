@@ -19,22 +19,28 @@ import java.util.Comparator;
  * @param <T>
  */
 public interface IArvoreBinaria<T> {
-    
-    
-    
+    private No<T> raiz;
+    private Comparator<T> comparador;
     /**
      * Método para adicionar um elemento à árvore.
      * @param novoValor - Elemento do Tipo T a ser armazenado na árvore.
      * 
      */
+    
     public void adicionar(T novoValor);
-    
-    
-    /**
-     * Método para pesquisar por um elemento na árvore e retorná-lo.
-     * @param valor - será utilizado para passar o valor da chave a ser buscada. Por exemplo, se for um árvore de Alunos indexada por nome, deve-se passar um objeto do tipo aluno com o nome que se deseja buscar.
-     * @return caso tenha sido encontrado um elemento com o valor buscado, o mesmo será retornado. Caso contrário retorna null.
-     */
+    if (no == null) {
+            return new No<>(valor);
+        }
+
+        if (comparador.compare(valor, no.valor) < 0) {
+            no.esquerdo = adicionar(no.esquerdo, valor);
+        } else if (comparador.compare(valor, no.valor) > 0) {
+            no.direito = adicionar(no.direito, valor);
+        }
+
+        return no;
+    }
+
     public T pesquisar(T valor);
     
     /**
