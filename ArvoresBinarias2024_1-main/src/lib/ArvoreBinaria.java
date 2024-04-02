@@ -18,7 +18,7 @@ import java.util.Comparator;
  * 
  * @param <T>
  */
-public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
+public class ArvoreBinaria<T>{
     private No<T> raiz;
     protected No<T> no;
     private Comparator<T> comparador;
