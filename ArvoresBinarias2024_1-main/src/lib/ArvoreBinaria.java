@@ -20,6 +20,7 @@ import java.util.Comparator;
  */
 public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     private No<T> raiz;
+    protected No<T> no;
     private Comparator<T> comparador;
     /**
      * Método para adicionar um elemento à árvore.
