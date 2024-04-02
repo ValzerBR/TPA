@@ -18,24 +18,24 @@ import java.util.Comparator;
  * 
  * @param <T>
  */
-public interface IArvoreBinaria<T> {
+public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     private No<T> raiz;
     private Comparator<T> comparador;
     /**
      * Método para adicionar um elemento à árvore.
-     * @param novoValor - Elemento do Tipo T a ser armazenado na árvore.
      * 
+     * @param novoValor - Elemento do Tipo T a ser armazenado na árvore.
+     * @return O nó adicionado à árvore.
      */
-    
-    public void adicionar(T novoValor);
-    if (no == null) {
-            return new No<>(valor);
+    public No<T> adicionar(T novoValor) {
+        if (no == null) {
+            return new No<>(novoValor);
         }
 
-        if (comparador.compare(valor, no.valor) < 0) {
-            no.esquerdo = adicionar(no.esquerdo, valor);
-        } else if (comparador.compare(valor, no.valor) > 0) {
-            no.direito = adicionar(no.direito, valor);
+        if (comparador.compare(novoValor, no.getValor()) < 0) {
+            no.setFilhoEsquerda(adicionar(novoValor));
+        } else if (comparador.compare(novoValor, no.getValor()) > 0) {
+            no.setFilhoDireita(adicionar(novoValor));
         }
 
         return no;
