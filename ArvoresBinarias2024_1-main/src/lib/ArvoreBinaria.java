@@ -27,7 +27,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
      * @param novoValor - Elemento do Tipo T a ser armazenado na árvore.
      * @return O nó adicionado à árvore.
      */
-    public No<T> adicionar(T novoValor) {
+    public No<T> adicionar(No<T> no,T novoValor) {
         if (no == null) {
             return new No<>(novoValor);
         }
