@@ -44,13 +44,13 @@ public class ArvoreBinaria<T>{
     
    
     public T pesquisar(T valor, Comparator comparador);
-     /**
-     * Método para pesquisar por um elemento na árvore utilizando um comparator passado como parâmetro. Como o comparador a ser usado não é o que 
-     indexou a árvore, você deve varrer todos os elementos da arvore na busca. O valor a ser buscado deve ser passado de acordo com o comparador passado.
-     * @param valor - será utilizado para passar o valor da chave a ser buscada.
-     * @param comparador - Comparator a ser utilizado na busca. 
-     * @return caso tenha sido encontrado um elemento com o valor buscado, o mesmo será retornado. Caso contrário retorna null.
-     */
+    // LOGICA:
+    // if comparador < 0:   (VALOR PESQUISADO É MENOR QUE COMAPRADO)
+      //  return getFilhoEsquerda, valor.
+   //  elif comparador >0: (VALOR PESQUISADO É MAIOR QUE COMAPRADO)
+     //   return getFilhoDireita, valor.
+    // else:   (VALOR COMPARADO IGUAL)
+     //   Valor encontrado.
  
     public T remover(T valor);
     
