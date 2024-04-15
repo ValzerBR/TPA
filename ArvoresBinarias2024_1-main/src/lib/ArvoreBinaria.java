@@ -5,89 +5,157 @@
  */
 package lib;
 
+import app.Aluno;
+
 import java.util.Comparator;
 
 /**
  *
  * @author victoriocarvalho
- * 
+ *
  * É um requisito do trabalho que sua classe ArvoreBinária implemente esta interface!
- * Com isso garantiremos que você implementou todos os métodos obrigatórios e que 
+ * Com isso garantiremos que você implementou todos os métodos obrigatórios e que
  * conseguirá rodar o programa de teste para redigir o relatório.
- * 
- * 
+ *
+ *
  * @param <T>
  */
-public class ArvoreBinaria<T>{
-    private No<T> raiz;
-    protected No<T> no;
-    private Comparator<T> comparador;
-    /**
-     * Método para adicionar um elemento à árvore.
-     * 
-     * @param novoValor - Elemento do Tipo T a ser armazenado na árvore.
-     * @return O nó adicionado à árvore.
-     */
-    public No<T> adicionar(No<T> no,T novoValor) {
+public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
+
+    protected No<T> raiz = null;
+    protected Comparator<T> comparador;
+
+    public ArvoreBinaria(Comparator<T> comp) {
+        comparador = comp;
+    }
+
+    @Override
+    public void adicionar(T novoValor) {
+        var novo = new No<>(novoValor); // Crie um novo nó com o novo valor
+        if (raiz == null) {
+            raiz = novo; // Se a árvore estiver vazia, o novo nó se torna a raiz
+        } else {
+            adicionarRecursivo(raiz, novo); // Caso contrário, chame o método auxiliar para adicionar recursivamente
+        }
+    }
+
+    // Método auxiliar para adicionar recursivamente
+    private void adicionarRecursivo(No<T> pai, No<T> novo) {
+        // Comparar o novo valor com o valor do nó pai
+        int compResult = comparador.compare(novo.getValor(), pai.getValor());
+
+        // Se o novo valor for menor que o valor do pai, adiciona à esquerda
+        if (compResult < 0) {
+            if (pai.getFilhoEsquerda() == null) {
+                pai.setFilhoEsquerda(novo); // Se não houver filho à esquerda, adicione o novo nó aqui
+            } else {
+                adicionarRecursivo(pai.getFilhoEsquerda(), novo); // Caso contrário, continue a busca recursivamente à esquerda
+            }
+        }
+        // Se o novo valor for maior que o valor do pai, adiciona à direita
+        else if (compResult > 0) {
+            if (pai.getFilhoDireita() == null) {
+                pai.setFilhoDireita(novo); // Se não houver filho à direita, adicione o novo nó aqui
+            } else {
+                adicionarRecursivo(pai.getFilhoDireita(), novo); // Caso contrário, continue a busca recursivamente à direita
+            }
+        }
+        // Se o novo valor for igual ao valor do pai, pode ser tratado de forma diferente, dependendo dos requisitos da árvore
+        // Por exemplo, você pode optar por permitir duplicatas ou não, ou substituir o valor existente pelo novo valor
+    }
+
+
+    private No<T> removerRecursivo(No<T> atual, T valor) {
+        if (atual == null) {
+            return null; // Nó não encontrado, não há nada a ser removido
+        }
+
+        int compResult = comparador.compare(valor, atual.getValor());
+
+        if (compResult < 0) {
+            atual.setFilhoEsquerda(removerRecursivo(atual.getFilhoEsquerda(), valor)); // Procura na subárvore esquerda
+        } else if (compResult > 0) {
+            atual.setFilhoDireita(removerRecursivo(atual.getFilhoDireita(), valor)); // Procura na subárvore direita
+        } else {
+            // Caso de remoção encontrado
+            if (atual.getFilhoEsquerda() == null) {
+                return atual.getFilhoDireita(); // Se não houver filho à esquerda, retorna o filho à direita (ou null)
+            } else if (atual.getFilhoDireita() == null) {
+                return atual.getFilhoEsquerda(); // Se não houver filho à direita, retorna o filho à esquerda
+            } else {
+                // Caso de remoção com dois filhos
+                // Encontra o nó sucessor, que é o menor nó à direita
+                No<T> sucessor = encontrarMenor(atual.getFilhoDireita());
+                atual.setValor(sucessor.getValor()); // Copia o valor do sucessor para o nó atual
+                atual.setFilhoDireita(removerRecursivo(atual.getFilhoDireita(), sucessor.getValor())); // Remove o sucessor da subárvore direita
+            }
+        }
+
+        return atual;
+    }
+
+    // Método auxiliar para encontrar o menor nó em uma subárvore
+    private No<T> encontrarMenor(No<T> no) {
+        if (no.getFilhoEsquerda() == null) {
+            return no; // O nó atual é o menor
+        }
+        return encontrarMenor(no.getFilhoEsquerda()); // Continue a procurar na subárvore esquerda
+    }
+
+
+
+    public No<T> adicionarBreno(No<T> no,T novoValor) {
         if (no == null) {
             return new No<>(novoValor);
         }
 
         if (comparador.compare(novoValor, no.getValor()) < 0) {
-            no.setFilhoEsquerda(adicionar(novoValor));
+            //no.setFilhoEsquerda(adicionar(novoValor));
         } else if (comparador.compare(novoValor, no.getValor()) > 0) {
-            no.setFilhoDireita(adicionar(novoValor));
+            //no.setFilhoDireita(adicionar(novoValor));
         }
 
         return no;
     }
-    
-   
-    public T pesquisar(T valor, Comparator comparador);
-    // LOGICA:
-    // if comparador < 0:   (VALOR PESQUISADO É MENOR QUE COMAPRADO)
-      //  return getFilhoEsquerda, valor.
-   //  elif comparador >0: (VALOR PESQUISADO É MAIOR QUE COMAPRADO)
-     //   return getFilhoDireita, valor.
-    // else:   (VALOR COMPARADO IGUAL)
-     //   Valor encontrado.
- 
-    public T remover(T valor);
-    
 
-    /**
-     * Método que busca por um elemento na árvore e, caso encontre, o remove da árvore e o retorna
-     * @param valor - será utilizado para passar o valor da chave a ser buscada. Por exemplo, se for um árvore de Alunos indexada por nome, deve-se passar um objeto do tipo aluno com o nome que se deseja buscar.
-     * @return caso tenha sido encontrado um elemento com o valor buscado, o elemento será removido da árvore e seu valor (do tipo T) será retornado. Caso contrário retorna null.
-     */
-    
-    public int altura();
-    
-    /**
-     * Método que retorna a altura da árvore
-     * @return Retorna a altura da árvore. Árvores só com raiz tem altura zero(0). Se raiz for nula retorne -1. 
-     */
-    
-    public int quantidadeNos();
-    
-    /**
-     * Método que retorna a quantidade de nós da árvore
-     * @return Retorna a quantidade de nós da árvore
-     */
+    @Override
+    public T pesquisar(T valor) {
+        return null;
+    }
 
-    public String caminharEmNivel();
-    
-    
-    /**
-     * Metódo que retona o resultado do caminhamento em nível na árvore.
-     * @return String contendo os toString dos valores armazenados nos nós, separados por " \n ". Os nós devem ser percorridos em nível. A String deve iniciar com "[" e finalizar com "]"
-     */
-   
-    public String caminharEmOrdem();
-     
-    /**
-     * Metódo que retona o resultado do caminhamento em ordem na árvore.
-     * @return String contendo os toString dos valores armazenados nos nós, separados por " \n ". Os nós devem ser percorridos em ordem. A String deve iniciar com "[" e finalizar com "]"
-     */
+    @Override
+    public T pesquisar(T valor, Comparator comparador) {
+        return null;
+    }
+
+    private void _remover(T valor) {
+        raiz = removerRecursivo(raiz, valor);
+    }
+
+    @Override
+    public T remover(T valor) {
+        raiz = removerRecursivo(raiz, valor);
+        return null;
+    }
+
+    @Override
+    public int altura() {
+        return 0;
+    }
+
+    @Override
+    public int quantidadeNos() {
+        return 0;
+    }
+
+    @Override
+    public String caminharEmNivel() {
+        return "";
+    }
+
+    @Override
+    public String caminharEmOrdem() {
+        return "";
+    }
 }
     
