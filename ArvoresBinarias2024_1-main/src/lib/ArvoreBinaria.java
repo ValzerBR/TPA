@@ -140,7 +140,20 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
 
     @Override
     public int altura() {
-        return 0;
+        var no = altura(raiz);
+        return altura(raiz);
+    }
+
+    private int altura(No<T> no) {
+        if (no == null) {
+            return -1;  // Altura de uma árvore vazia é -1
+        }
+
+        int alturaEsquerda = altura(no.getFilhoEsquerda());
+        int alturaDireita = altura(no.getFilhoDireita());
+
+        // A altura do nó atual é o máximo entre a altura das subárvores esquerda e direita + 1
+        return 1 + Math.max(alturaEsquerda, alturaDireita);
     }
 
     private int contarNos(No<T> no) {
