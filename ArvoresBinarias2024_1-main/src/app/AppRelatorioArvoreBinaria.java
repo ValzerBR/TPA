@@ -68,13 +68,13 @@ public class AppRelatorioArvoreBinaria {
         if (busca == null)
             System.out.println("Aluno não encontrado");
         else
-            System.out.println("Aluno encontrado: "+busca);
+            System.out.println("Aluno encontrado: "+busca.getNome());
         //Vou fazer uma busca por nome
         busca = arv.pesquisar(new Aluno(0,"Pedro"), compPorNome);
         if (busca == null)
             System.out.println("Aluno não encontrado");
         else
-            System.out.println("Aluno encontrado: "+busca);
+            System.out.println("Aluno encontrado: "+busca.getNome());
 //------Fim do trecho citado na questão 9 do relatório-------------------------------
 
 
