@@ -143,9 +143,25 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
         return 0;
     }
 
+    private int contarNos(No<T> no) {
+        if (no == null) {
+            return 0;
+        }
+        // Visita primeiro o nó da esquerda
+        int nosNaEsquerda = contarNos(no.getFilhoEsquerda());
+        // Conta o próprio nó
+        int nosNoAtual = 1;
+        // Visita depois o nó da direita
+        int nosNaDireita = contarNos(no.getFilhoDireita());
+        // Retorna a soma dos nós na esquerda, no nó atual e na direita
+        return nosNaEsquerda + nosNoAtual + nosNaDireita;
+    }
+
+
     @Override
     public int quantidadeNos() {
-        return 0;
+        int nos = contarNos(raiz);
+        return nos;
     }
 
     @Override
