@@ -120,7 +120,21 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
 
     @Override
     public T pesquisar(T valor) {
-        return null;
+        return pesquisar(raiz, valor);
+    }
+
+    private T pesquisar(No<T> no, T valor) {
+        if (no == null) {
+            return null;
+        }
+
+        if (comparador.compare(valor, no.getValor()) < 0) {
+            return pesquisar(no.getFilhoEsquerda(), valor);
+        } else if (comparador.compare(valor, no.getValor()) > 0) {
+            return pesquisar(no.getFilhoDireita(), valor);
+        } else {
+            return no.getValor();
+        }
     }
 
     @Override
