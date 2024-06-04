@@ -1,5 +1,6 @@
 package app;
 
+import java.util.ArrayList;
 /**
  *
  * @author victoriocarvalho
@@ -11,6 +12,7 @@ package app;
 public class Aluno  {
     private int matricula;
     private String nome;
+    private ArrayList<Disciplina> disciplinasCursadas;
 
     public Aluno(int matricula, String nome){
         this.matricula = matricula;
@@ -34,5 +36,7 @@ public class Aluno  {
         this.nome = nome;
     }
 
-
+    public ArrayList<Disciplina> getDisciplinasCursadas(Aluno aluno){
+        return aluno.disciplinasCursadas;
+    }
 }
