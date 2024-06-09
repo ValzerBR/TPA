@@ -18,23 +18,33 @@ public class Menu {
             case 1:
                 System.out.println("Informar nome:");
                 System.out.println("Informar matrícula:");
+                
                 criarMenu();
+                
             case 2:
-                System.out.println("");
                 System.out.println("Informar nome:");
                 System.out.println("Informar carga horária:");
+                
                 criarMenu();
+                
             case 3:
                 System.out.println("");
+                
                 criarMenu();
+                
             case 4:
                 System.out.println("Informar nome do aluno que deseja consultar");
+                
                 criarMenu();
+                
             case 5:
                 System.out.println("Informar matrícula do aluno que deseja consultar");
+                
                 criarMenu();
+                
             case 6:
                 System.out.println("Informar matrícula do aluno que deseja excluir");
+                
                 criarMenu();
         }
     }
