@@ -7,6 +7,7 @@ package app;
 //Ajuste esse importe para que importe sua classe de Árvore binária
 import lib.ArvoreBinaria;
 import lib.IArvoreBinaria;
+import appEtapa3.models.Aluno;
 
 /**
  *

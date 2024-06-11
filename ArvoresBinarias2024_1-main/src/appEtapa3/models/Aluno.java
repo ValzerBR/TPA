@@ -1,4 +1,4 @@
-package appEtapa3;
+package appEtapa3.models;
 
 import java.util.ArrayList;
 /**

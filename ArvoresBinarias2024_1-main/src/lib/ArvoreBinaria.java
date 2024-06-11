@@ -5,7 +5,7 @@
  */
 package lib;
 
-import app.Aluno;
+import appEtapa3.models.Aluno;
 
 import java.util.Comparator;
 

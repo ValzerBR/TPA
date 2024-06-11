@@ -1,5 +1,7 @@
 package app;
 
+import appEtapa3.models.Aluno;
+
 import java.util.Comparator;
 
 /**

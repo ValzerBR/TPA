@@ -8,6 +8,7 @@ package app;
 import lib.ArvoreAVLExemplo;
 import lib.ArvoreBinariaExemplo;
 import lib.IArvoreBinaria;
+import appEtapa3.models.Aluno;
 
 /**
  *

@@ -6,6 +6,7 @@
 package app;
 
 import java.util.Random;
+import appEtapa3.models.Aluno;
 //Ajuste este import para que sua classe de Arvore Binária seja importada
 import lib.ArvoreBinariaExemplo;
 //Aqui estou importando a interface IArvoreBinaria, a mesma que sua classe de Árvore Binaria deve implementar

@@ -1,4 +1,4 @@
-package appEtapa3;
+package appEtapa3.models;
 
 import java.util.ArrayList;
 public class Disciplina {
@@ -6,14 +6,12 @@ public class Disciplina {
     private String nome;
     private  int cargaHoraria;
     private ArrayList<Disciplina> preRequisitos;
-    private ArrayList<Aluno> alunos;
 
-    public Disciplina(int codigo, String nome, int cargaHoraria, ArrayList<Disciplina> preRequisitos, ArrayList<Aluno> alunos){
+    public Disciplina(int codigo, String nome, int cargaHoraria, ArrayList<Disciplina> preRequisitos){
         this.codigo = codigo;
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
         this.preRequisitos = preRequisitos;
-        this.alunos = alunos;
     }
     public int getCodigo() {
         return codigo;
