@@ -31,8 +31,9 @@ public class ArvoreBinariaExemplo<T> implements IArvoreBinaria<T> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   @Override
-    public T pesquisar(T valor, Comparator comparador) {
+
+    @Override
+    public T pesquisar(T valor, Comparator<T> comparador) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -61,5 +62,10 @@ public class ArvoreBinariaExemplo<T> implements IArvoreBinaria<T> {
     public String caminharEmOrdem() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.    
     }
-        
+
+    @Override
+    public T getFirstNoh() {
+        return null;
+    }
+
 }

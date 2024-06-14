@@ -3,6 +3,7 @@ package appEtapa3;
 import app.ComparadorAlunoPorMatricula;
 import appEtapa3.models.Aluno;
 import appEtapa3.models.Disciplina;
+import appEtapa3.comparators.ComparadorDisciplinaPorNome;
 
 import appEtapa3.services.AlunoService;
 import appEtapa3.services.DisciplinaService;
@@ -17,10 +18,15 @@ public class Menu {
     ArvoreBinaria<Aluno> arvoreAluno;
     ArvoreBinaria<Disciplina> arvoreDisciplina;
     ComparadorAlunoPorMatricula compMatricula;
+    ComparadorAlunoPorNome compNome;
+    ComparadorDisciplinaPorNome compDisciplinaNome;
 
     public Menu(){
         this.compMatricula = new ComparadorAlunoPorMatricula();
+        this.compNome = new ComparadorAlunoPorNome();
         this.arvoreAluno = new ArvoreBinaria<>(compMatricula);
+        this.compDisciplinaNome = new ComparadorDisciplinaPorNome();
+        this.arvoreDisciplina = new ArvoreBinaria<>(compDisciplinaNome);
     }
 
     public static void main(String[] args){
@@ -31,6 +37,7 @@ public class Menu {
     private void criarMenu(){
 
         AlunoService alunoSvc = new AlunoService();
+        DisciplinaService disciplinaService = new DisciplinaService();
 
         System.out.println("Menu:\n 1- Cadastrar Aluno:\n 2- Cadastrar Disciplina:\n 3- Informar Pré requisito\n"+
                 " 4- Informar disciplina cursada\n 5- Consultar aluno por nome\n 6- Consultar aluno por matrícula\n"+
@@ -43,17 +50,11 @@ public class Menu {
                 alunoSvc.cadastrar(this.arvoreAluno);
                 criarMenu();
             case 2:
-                System.out.println("Informar nome:");
-
-                System.out.println("Informar carga horária:");
-
-
-
+                disciplinaService.cadastrar(this.arvoreDisciplina);
                 criarMenu();
 
             case 3:
-                System.out.println("");
-
+                disciplinaService.informarPreDisciplina(this.arvoreDisciplina, this.compDisciplinaNome);
                 criarMenu();
 
             case 4:
@@ -62,13 +63,16 @@ public class Menu {
                 criarMenu();
 
             case 5:
-                System.out.println("Informar matrícula do aluno que deseja consultar");
+                alunoSvc.pesquisar(this.arvoreAluno, this.compNome);
 
                 criarMenu();
 
             case 6:
-                System.out.println("Informar matrícula do aluno que deseja excluir");
+                alunoSvc.pesquisar(this.arvoreAluno, this.compMatricula);
+                criarMenu();
 
+            case 7:
+                alunoSvc.remover(this.arvoreAluno, this.compMatricula);
                 criarMenu();
         }
     }

@@ -102,25 +102,33 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
         return encontrarMenor(no.getFilhoEsquerda()); // Continue a procurar na subárvore esquerda
     }
 
-
-
-    public No<T> adicionarBreno(No<T> no,T novoValor) {
-        if (no == null) {
-            return new No<>(novoValor);
-        }
-
-        if (comparador.compare(novoValor, no.getValor()) < 0) {
-            //no.setFilhoEsquerda(adicionar(novoValor));
-        } else if (comparador.compare(novoValor, no.getValor()) > 0) {
-            //no.setFilhoDireita(adicionar(novoValor));
-        }
-
-        return no;
-    }
-
     @Override
     public T pesquisar(T valor) {
         return pesquisar(raiz, valor);
+    }
+    public T getFirstNoh(){
+        return raiz.getValor();
+    }
+
+    @Override
+    public T pesquisar(T valor, Comparator<T> comparador) {
+        return pesquisarRecursivo(raiz, valor, comparador); // Chama o método recursivo auxiliar
+    }
+
+    // Método recursivo auxiliar para pesquisar com um comparador
+    private T pesquisarRecursivo(No<T> no, T valor, Comparator<T> comparador) {
+        if (no == null) {
+            return null; // Valor não encontrado
+        }
+        int resultadoComparacao = comparador.compare(valor, no.getValor());
+
+        if (resultadoComparacao < 0) {
+            return pesquisarRecursivo(no.getFilhoEsquerda(), valor, comparador); // Pesquisa na subárvore esquerda
+        } else if (resultadoComparacao > 0) {
+            return pesquisarRecursivo(no.getFilhoDireita(), valor, comparador); // Pesquisa na subárvore direita
+        } else {
+            return no.getValor(); // Valor encontrado
+        }
     }
 
     private T pesquisar(No<T> no, T valor) {
@@ -135,11 +143,6 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
         } else {
             return no.getValor();
         }
-    }
-
-    @Override
-    public T pesquisar(T valor, Comparator comparador) {
-        return null;
     }
 
     private void _remover(T valor) {
@@ -200,5 +203,6 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     public String caminharEmOrdem() {
         return "";
     }
+
 }
     
