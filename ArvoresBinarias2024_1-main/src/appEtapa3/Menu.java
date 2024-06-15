@@ -16,6 +16,7 @@ import app.ComparadorAlunoPorNome;
 
 public class Menu {
     ArvoreBinaria<Aluno> arvoreAluno;
+    ArvoreBinaria<Aluno> arvoreAlunoNome;
     ArvoreBinaria<Disciplina> arvoreDisciplina;
     ComparadorAlunoPorMatricula compMatricula;
     ComparadorAlunoPorNome compNome;
@@ -25,6 +26,7 @@ public class Menu {
         this.compMatricula = new ComparadorAlunoPorMatricula();
         this.compNome = new ComparadorAlunoPorNome();
         this.arvoreAluno = new ArvoreBinaria<>(compMatricula);
+        this.arvoreAlunoNome = new ArvoreBinaria<>(compNome);
         this.compDisciplinaNome = new ComparadorDisciplinaPorNome();
         this.arvoreDisciplina = new ArvoreBinaria<>(compDisciplinaNome);
     }
@@ -47,7 +49,7 @@ public class Menu {
         switch(value.nextInt()){
             case 1:
                 limpar();
-                alunoSvc.cadastrar(this.arvoreAluno);
+                alunoSvc.cadastrar(this.arvoreAluno, this.arvoreAlunoNome);
                 criarMenu();
             case 2:
                 limpar();
@@ -67,7 +69,7 @@ public class Menu {
 
             case 5:
                 limpar();
-                alunoSvc.pesquisar(this.arvoreAluno, this.compNome);
+                alunoSvc.pesquisar(this.arvoreAlunoNome, this.compNome);
 
                 criarMenu();
 
@@ -78,7 +80,7 @@ public class Menu {
 
             case 7:
                 limpar();
-                alunoSvc.remover(this.arvoreAluno, this.compMatricula);
+                alunoSvc.remover(this.arvoreAluno, this.arvoreAlunoNome, this.compMatricula);
                 criarMenu();
         }
     }

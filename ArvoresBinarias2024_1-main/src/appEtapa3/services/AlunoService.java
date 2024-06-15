@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class AlunoService {
 
-    public void cadastrar(ArvoreBinaria arvore){
+    public void cadastrar(ArvoreBinaria arvore, ArvoreBinaria arvoreNome){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Informar nome:");
@@ -25,6 +25,7 @@ public class AlunoService {
 
         Aluno aluno = new Aluno(matricula, nome);
         arvore.adicionar(aluno);
+        arvoreNome.adicionar(aluno);
     }
 
     public void pesquisar(ArvoreBinaria arvore, Comparator comp){
@@ -35,7 +36,7 @@ public class AlunoService {
             System.out.println("Informar matrícula:");
             int matricula = scanner.nextInt();
 
-            aluno =  (Aluno)arvore.pesquisar(new Aluno(matricula, ""), comp);
+            aluno = (Aluno)arvore.pesquisar(new Aluno(matricula, ""), comp);
         }
         else if(comp instanceof ComparadorAlunoPorNome){
             System.out.println("Informar nome:");
@@ -61,7 +62,7 @@ public class AlunoService {
         }
     }
 
-    public void remover(ArvoreBinaria arvore, ComparadorAlunoPorMatricula comp){
+    public void remover(ArvoreBinaria arvore,ArvoreBinaria arvoreNome, ComparadorAlunoPorMatricula comp){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Informe a matrícula do aluno que deseja excluir:");
@@ -69,6 +70,7 @@ public class AlunoService {
 
         Aluno aluno = (Aluno)arvore.pesquisar(new Aluno(matricula, ""), comp);
         arvore.remover(aluno);
+        arvoreNome.remover(aluno);
 
         System.out.println("Aluno de matrícula:" + aluno.getMatricula() + " removido.");
     }
