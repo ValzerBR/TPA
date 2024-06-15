@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Aluno  {
     private int matricula;
     private String nome;
-    private ArrayList<Disciplina> disciplinasCursadas;
+    private ArrayList<Disciplina> disciplinasCursadas = new ArrayList<>();
 
     public Aluno(int matricula, String nome){
         this.matricula = matricula;
