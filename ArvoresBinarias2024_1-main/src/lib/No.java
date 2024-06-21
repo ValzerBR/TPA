@@ -14,6 +14,7 @@ public class No<T> {
     private T valor;
     private No<T> filhoDireita;
     private No<T> filhoEsquerda;
+    private int altura;
 
     
     public No(T valor){
@@ -63,6 +64,12 @@ public class No<T> {
     public void setFilhoEsquerda(No<T> filhoEsquerda) {
         this.filhoEsquerda = filhoEsquerda;
     }
-    
-    
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
 }

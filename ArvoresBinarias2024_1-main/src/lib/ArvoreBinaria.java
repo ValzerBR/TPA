@@ -95,7 +95,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
     }
 
     // Método auxiliar para encontrar o menor nó em uma subárvore
-    private No<T> encontrarMenor(No<T> no) {
+    No<T> encontrarMenor(No<T> no) {
         if (no.getFilhoEsquerda() == null) {
             return no; // O nó atual é o menor
         }
@@ -161,7 +161,7 @@ public class ArvoreBinaria<T> implements IArvoreBinaria<T> {
         return altura(raiz);
     }
 
-    private int altura(No<T> no) {
+    int altura(No<T> no) {
         if (no == null) {
             return -1;  // Altura de uma árvore vazia é -1
         }
